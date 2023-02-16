@@ -1,42 +1,46 @@
 
 var allProducts = []
 
-var totalSummary={
-    netPrice:0,
-    totalItems:0,
-    discount:0,
-    totalPrice:0
+var totalSummary = {
+    netPrice: 0,
+    totalItems: 0,
+    discount: 0,
+    totalPrice: 0
 }
 
 function displayProduct() {
     var tableBody = document.getElementById("table_body")
-    tableBody.innerHTML =null
+    tableBody.innerHTML = null
     for (var i = 0; i < allProducts.length; i++) {
         var newProductRow = document.createElement("tr")
         var column_1 = document.createElement("td")
         var column_2 = document.createElement("td")
         var column_3 = document.createElement("td")
 
-        column_1.innerText =i+1
-        column_2.innerText=allProducts[i].name
-        column_3.innerText=allProducts[i].price
-        newProductRow.append(column_1,column_2,column_3)
+        column_1.innerText = i + 1
+        column_2.innerText = allProducts[i].name
+        column_3.innerText = allProducts[i].price
+        newProductRow.append(column_1, column_2, column_3)
         tableBody.append(newProductRow)
     }
 }
 
 
-function displayProductSummary(){
-    var netPriceBox=document.getElementById("net_price")
-    var totalItems=document.getElementById("total_items")
-  
-    for(var i=0; i < allProducts.length; i++){
-    
-        totalSummary.netPrice=totalSummary.netPrice+parseInt(allProducts[i].price)
-    }
+function displayProductSummary() {
+    var netPriceBox = document.getElementById("net_price")
+    var totalItems = document.getElementById("total_items")
+    console.log(totalSummary);
 
-    netPriceBox.innerText= totalSummary.netPrice
-    totalItems.innerText=allProducts.length
+    totalSummary.netPrice = 0
+    
+    for (var i = 0; i < allProducts.length; i++) {
+
+        totalSummary.netPrice = totalSummary.netPrice + parseInt(allProducts[i].price)
+    }
+    console.log(totalSummary);
+
+    netPriceBox.innerText = totalSummary.netPrice
+    totalItems.innerText = allProducts.length
 }
 
 
@@ -57,38 +61,39 @@ formSubmit.addEventListener("submit", function (event) {
     // hehe.value=""
     displayProduct()
     displayProductSummary()
+    console.log(allProducts)
 })
 
 var formDiscount = document.getElementById("discount_form")
 
-formDiscount.addEventListener("submit",function (e) {
+formDiscount.addEventListener("submit", function (e) {
     e.preventDefault();
-var totalPriceBox = document.getElementById("total_price")
-var discount = document.getElementById("discount")
-var discountPercentage = document.getElementById("product_discount").value
+    var totalPriceBox = document.getElementById("total_price")
+    var discount = document.getElementById("discount")
+    var discountPercentage = document.getElementById("product_discount").value
 
-// if(discountPercentage!==""){
-// discountPercentage=parseInt(discountPercentage)
-//     totalSummary.discount=totalSummary.netPrice*(discountPercentage/100)
-//     discount.innerText=totalSummary.discount
-//     totalSummary.totalPrice=totalSummary.netPrice-totalSummary.discount
-//     totalPriceBox.innerText=totalSummary.totalPrice
-// }
+    // if(discountPercentage!==""){
+    // discountPercentage=parseInt(discountPercentage)
+    //     totalSummary.discount=totalSummary.netPrice*(discountPercentage/100)
+    //     discount.innerText=totalSummary.discount
+    //     totalSummary.totalPrice=totalSummary.netPrice-totalSummary.discount
+    //     totalPriceBox.innerText=totalSummary.totalPrice
+    // }
 
-discountPercentage=parseInt(discountPercentage)
-console.log(discountPercentage);
-if(isNaN(discountPercentage)){
-    alert("Discount")
-}else{
-    totalSummary.discount=totalSummary.netPrice*(discountPercentage/100)
-    discount.innerText=totalSummary.discount
-    totalSummary.totalPrice=totalSummary.netPrice-totalSummary.discount
-    totalPriceBox.innerText=totalSummary.totalPrice
-}
+    discountPercentage = parseInt(discountPercentage)
+    console.log(discountPercentage);
+    if (isNaN(discountPercentage)) {
+        alert("Discount")
+    } else {
+        totalSummary.discount = totalSummary.netPrice * (discountPercentage / 100)
+        discount.innerText = totalSummary.discount
+        totalSummary.totalPrice = totalSummary.netPrice - totalSummary.discount
+        totalPriceBox.innerText = totalSummary.totalPrice
+    }
 })
 
 
-var paymentBtn=document.querySelector(".payment_btn")
-paymentBtn.addEventListener("click",function(){
+var paymentBtn = document.querySelector(".payment_btn")
+paymentBtn.addEventListener("click", function () {
     alert("Payment success")
 })
