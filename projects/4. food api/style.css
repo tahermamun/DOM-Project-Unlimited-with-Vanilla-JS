@@ -1,0 +1,24 @@
+header{
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #ade5e5
+
+}
+
+
+.card{
+    border-radius:5px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.all_food{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.food_img{
+    width: 100%;
+}
